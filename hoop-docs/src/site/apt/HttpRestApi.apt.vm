@@ -70,7 +70,7 @@ Enter host password for user 'foo':
 
   When using tools like <<<curl>>>, the authentication token must be stored on
   the first request doing authentication, and submitted in subsequent requests.
-  To do this with curl the <<<-b>>> and <<<-c>>> options to save and send HTTP
+  To do this with curl the <<<-c>>> and <<<-b>>> options to save and send HTTP
   Cookies must be used.
 
   For example, the first request doing authentication should save the received
@@ -79,19 +79,19 @@ Enter host password for user 'foo':
     Using Pseudo Authentication:
 
 +---+
-$ curl -b ~/.hoopauth "http://<HOOP_HOST>:14000?op=homedir&user.name=babu"
+$ curl -c ~/.hoopauth "http://<HOOP_HOST>:14000?op=homedir&user.name=babu"
 +---+
 
     Using Kerberos HTTP SPNEGO authentication:
 
 +---+
-$ curl --negotiate -u foo -b ~/.hoopauth "http://<HOOP_HOST>:14000?op=homedir"
+$ curl --negotiate -u foo -c ~/.hoopauth "http://<HOOP_HOST>:14000?op=homedir"
 +---+
 
   Then, subsequent requests forward the previously received HTTP Cookie:
 
 +---+
-$ curl -c ~/.hoopauth "http://<HOOP_HOST>:14000?op=list"
+$ curl -b ~/.hoopauth "http://<HOOP_HOST>:14000?op=list"
 +---+
 
 * File System Operations
